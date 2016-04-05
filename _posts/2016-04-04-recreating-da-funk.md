@@ -19,7 +19,7 @@ At the end of this tutorial we'll create this phrase:
 
 ### Theme
 
-The nice thing about Daft Punk is that they "open sourced" a large amount of their music. You can find midi notes, loops, acapellas and beats for many of their songs on a site called [Daft Club](http://daft.club/daftabase). You can download midi file and beats (kick, snare, percussion) for Da Funk. The track is also the subject of many YouTube tutorial videos, and appears in Mitchell Sigman's [Steal this sound](http://www.amazon.com/Keyboard-Presents-Steal-This-Sound/dp/1423492811) which make a great one to recreate using Overtone.
+The nice thing about Daft Punk is that they "open sourced" a large amount of their music. You can find midi notes, loops, acapellas and beats for many of their songs (including Da Funk) on a site called [Daft Club](http://daft.club/daftabase). The track is also the subject of many YouTube tutorial videos, and appears in Mitchell Sigman's [Steal this sound](http://www.amazon.com/Keyboard-Presents-Steal-This-Sound/dp/1423492811) which make a perfect one to recreate using Overtone.
 
 So from the midi file from Daft Club we can get these notes:
 
