@@ -95,7 +95,7 @@ This `1.334` is a ratio of adding 5 semitones in hertz. This should sound like t
 	<source src="/assets/sounds/synth2.ogg"/>
 </audio>
 
-To create this "wah-wah" effect we need to add band-pass filter:
+To create the "wah-wah" effect we need to apply a band-pass filter on the sound from oscillators:
 {% highlight clojure %}
 (definst da-funk [freq 440 dur 1.0 amp 1.0 cutoff 2200]
    (let [env (env-gen (adsr 0.3 0.7 0.5 0.3) (line:kr 1.0 0.0 dur) :action FREE)
