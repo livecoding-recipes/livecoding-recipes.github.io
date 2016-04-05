@@ -2,7 +2,7 @@
 layout: post
 title:  "Recreating Daft Punk's Da Funk"
 date:   2016-04-03 21:18:00
-categories: overtone remake
+categories: remake
 ---
 
 This is the first of (I hope...) series of tutorials on using great [Overtone](http://overtone.github.io/) library for turning your computer into a musical instrument with Clojure.
