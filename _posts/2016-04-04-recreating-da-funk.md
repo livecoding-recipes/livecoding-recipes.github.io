@@ -78,7 +78,7 @@ You should hear something like this:
 	<source src="/assets/sounds/synth1.ogg"/>
 </audio>
 
-OK, let's shape sound a bit. Let's add second saw oscillator detuned by 5 semitones and mix them together:
+OK, let's shape the sound a bit. Let's add second saw oscillator detuned by 5 semitones and mix them together:
 {% highlight clojure %}
 (definst da-funk [freq 440 dur 1.0 amp 1.0]
    (let [env (env-gen (adsr 0.3 0.7 0.5 0.3) (line:kr 1.0 0.0 dur) :action FREE)
