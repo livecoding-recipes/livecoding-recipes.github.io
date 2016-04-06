@@ -12,7 +12,8 @@ Today we'll recreate Daft Punk's "Da Funk" [main theme](https://youtu.be/mmi60Bd
 ### TL;DR
 At the end of this tutorial we'll create this phrase:
 <audio controls>
-	<source src="/assets/sounds/all.ogg"/>
+	<source src="/assets/sounds/dafunk/all.ogg" type="audio/ogg"/>
+	<source src="/assets/sounds/dafunk/all.mp3" type="audio/mpeg"/>
 </audio>
 
 <br/>
@@ -75,7 +76,8 @@ Finally, to play a melody we need to convert from midi notes to hertz and specif
 
 You should hear something like this:
 <audio controls>
-	<source src="/assets/sounds/synth1.ogg"/>
+	<source src="/assets/sounds/dafunk/synth1.ogg" type="audio/ogg"/>
+	<source src="/assets/sounds/dafunk/synth1.mp3" type="audio/mpeg"/>
 </audio>
 
 OK, let's shape the sound a bit. Let's add second saw oscillator detuned by 5 semitones and mix them together:
@@ -92,7 +94,8 @@ OK, let's shape the sound a bit. Let's add second saw oscillator detuned by 5 se
 
 This `1.334` is a ratio of adding 5 semitones in hertz. This should sound like this:
 <audio controls>
-	<source src="/assets/sounds/synth2.ogg"/>
+	<source src="/assets/sounds/dafunk/synth2.ogg" type="audio/ogg"/>
+	<source src="/assets/sounds/dafunk/synth2.mp3" type="audio/mpeg"/>
 </audio>
 
 To create the "wah-wah" effect we need to apply a band-pass filter on the sound from oscillators:
@@ -112,7 +115,8 @@ To create the "wah-wah" effect we need to apply a band-pass filter on the sound 
 
 So we increase resonance a bit (0.6 vs. standard 0.5) and use center frequency of 2200 hertz. Then we apply a filter envelope: add attack and release of 0.5 and scale the envelope to half of note duration. You can of course experiment with these settings.
 <audio controls>
-	<source src="/assets/sounds/synth3.ogg"/>
+	<source src="/assets/sounds/dafunk/synth3.ogg" type="audio/ogg"/>
+	<source src="/assets/sounds/dafunk/synth3.mp3" type="audio/mpeg"/>
 </audio>
 
 And finally let's add some distortion - we could install `fx-distortion` on our instrument, but since it's integral part of the sound, let's just inline it:
@@ -134,7 +138,8 @@ And finally let's add some distortion - we could install `fx-distortion` on our 
 {% endhighlight %}
 
 <audio controls>
-	<source src="/assets/sounds/synth4.ogg"/>
+	<source src="/assets/sounds/dafunk/synth4.ogg" type="audio/ogg"/>
+	<source src="/assets/sounds/dafunk/synth4.mp3" type="audio/mpeg"/>
 </audio>
 
 <br/>
@@ -195,7 +200,8 @@ To play only drums we need to recreate track like this:
 {% endhighlight %}
 
 <audio controls>
-	<source src="/assets/sounds/beat.ogg"/>
+	<source src="/assets/sounds/dafunk/beat.ogg" type="audio/ogg"/>
+	<source src="/assets/sounds/dafunk/beat.mp3" type="audio/mpeg"/>
 </audio>
 
 And finally, to mix the synth with drums we need to use `with` function:
@@ -208,7 +214,8 @@ And finally, to mix the synth with drums we need to use `with` function:
 {% endhighlight %}
 
 <audio controls>
-	<source src="/assets/sounds/all.ogg"/>
+	<source src="/assets/sounds/dafunk/all.ogg" type="audio/ogg"/>
+	<source src="/assets/sounds/dafunk/all.mp3" type="audio/mpeg"/>
 </audio>
 
 
