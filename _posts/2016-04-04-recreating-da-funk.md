@@ -220,3 +220,6 @@ And finally, to mix the synth with drums we need to use `with` function:
 
 
 That's it! This approach needs a little bit to understand, but it's really powerful in terms of representing simple songs. Also, it plays really well with live coding, which I plan to show in one of the next tutorials.
+
+**EDIT:**
+I'm aware that my version differ from the original sound. Just uploaded slightly updated final version and working on fixing the content of the post. Thanks for all that pointed my mistakes! As one said - we're only *human after all* ;)
