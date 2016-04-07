@@ -16,7 +16,9 @@ At the end of this tutorial we'll create this phrase:
 	<source src="/assets/sounds/dafunk/all.mp3" type="audio/mpeg"/>
 </audio>
 
-<br/>
+
+**EDIT:**
+Based on HN/Reddit comments about some errors in my synth definitions making main theme sounding a lot different that the original I made some changes to this post. I left the corrections in the text, but code and sound samples are now updated. Thanks for all the suggestions!
 
 ### Theme
 
@@ -26,7 +28,7 @@ So from the midi file from Daft Club we can get these notes:
 
 ![notes](/assets/images/da-funk.png)
 
-The key is F major and BPM is 110.
+The key is ~~F major~~ G major and BPM is 110.
 
 To recreate the melody I'll use [Leipzig](https://github.com/ctford/leipzig) - superb library which provides a DSL for constructing melody as data structure.
 
@@ -37,13 +39,13 @@ To recreate the melody I'll use [Leipzig](https://github.com/ctford/leipzig) - s
 
 (def da-funk
   (->> (phrase [2 1/2 1/2 1/2 2.5 1/2 1/2 1/2 2.5 1/2 1/2 1/2 2.5 1 1]
-               [1 0 1 3 -2 -3 -2 0 -4 -5 -4 -2 -6 -5 -4])
-       (where :pitch (comp scale/F scale/major))
+               [0 -1 0 2 -3 -4 -3 -1 -5 -6 -5 -3 -7 -6 -5])
+       (where :pitch (comp scale/G scale/minor))
        (all :part :da-funk)
        (all :amp 1)))
 {% endhighlight %}
 
-The base is `phrase` function which takes two sequences: durations and pitches (as degrees of a given scale). So as we're in F major, F is 0, G is 1, A is 2 and so on. If you want a pause, just use `nil` as pitch, but remember to handle it carefully later.
+The base is `phrase` function which takes two sequences: durations and pitches (as degrees of a given scale). So as we're in ~~F major, F is 0, G is 1, A is 2~~ G minor, G is 0, A is 1, Bb is 2 and so on. If you want a pause, just use `nil` as pitch, but remember to handle it carefully later.
 
 Now let's create instrument:
 
@@ -53,12 +55,11 @@ Now let's create instrument:
 (definst da-funk [freq 440 dur 1.0 amp 1.0]
    (let [env (env-gen (adsr 0.3 0.7 0.5 0.3)
 	                    (line:kr 1.0 0.0 dur) :action FREE)
-         freq (/ freq 2)
          osc (saw freq)]
      (-> osc (* env amp) pan2)))
 {% endhighlight %}
 
-So we use a saw-wave with half of frequency (one octave down) and add some attack and release to amplitude envelope shape.
+So we use a saw-wave with ~~half of frequency (one octave down)~~ original frequency and add some attack and release to amplitude envelope shape.
 
 Now we need to tell Leipzig that part `:da-funk` should use `da-funk` instrument:
 {% highlight clojure %}
@@ -84,15 +85,14 @@ OK, let's shape the sound a bit. Let's add second saw oscillator detuned by 5 se
 {% highlight clojure %}
 (definst da-funk [freq 440 dur 1.0 amp 1.0]
    (let [env (env-gen (adsr 0.3 0.7 0.5 0.3) (line:kr 1.0 0.0 dur) :action FREE)
-         freq (/ freq 2)
          osc (mix [(saw freq)
-                   (saw (* freq 1.3348398541700344))])]
+                   (saw (* freq 0.7491535384383409))])]
      (-> osc
          (* env amp)
          pan2)))
 {% endhighlight %}
 
-This `1.334` is a ratio of adding 5 semitones in hertz. This should sound like this:
+This ~~`1.334`~~ `0.749` is a ratio of ~~adding~~ subtracting 5 semitones in hertz. This should sound like this:
 <audio controls>
 	<source src="/assets/sounds/dafunk/synth2.ogg" type="audio/ogg"/>
 	<source src="/assets/sounds/dafunk/synth2.mp3" type="audio/mpeg"/>
@@ -104,9 +104,8 @@ To create the "wah-wah" effect we need to apply a band-pass filter on the sound 
    (let [env (env-gen (adsr 0.3 0.7 0.5 0.3) (line:kr 1.0 0.0 dur) :action FREE)
          level (+ (* freq 0.25)
                   (env-gen (adsr 0.5 0.3 1 0.5) (line:kr 1.0 0.0 (/ dur 2)) :level-scale cutoff))
-         freq (/ freq 2)
          osc (mix [(saw freq)
-                   (saw (* freq 1.3348398541700344))])]
+                   (saw (* freq 0.7491535384383409))])]
      (-> osc
          (bpf level 0.6)
          (* env amp)
@@ -123,11 +122,10 @@ And finally let's add some distortion - we could install `fx-distortion` on our 
 {% highlight clojure %}
 (definst da-funk [freq 440 dur 1.0 amp 1.0 cutoff 2200 boost 12 dist-level 0.015]
    (let [env (env-gen (adsr 0.3 0.7 0.5 0.3) (line:kr 1.0 0.0 dur) :action FREE)
-         freq (/ freq 2)
          level (+ (* freq 0.25)
                   (env-gen (adsr 0.5 0.3 1 0.5) (line:kr 1.0 0.0 (/ dur 2)) :level-scale cutoff))
          osc (mix [(saw freq)
-                   (saw (* freq 1.3348398541700344))])]
+                   (saw (* freq 0.7491535384383409))])]
      (-> osc
          (bpf level 0.6)
          (* env amp)
@@ -222,4 +220,4 @@ And finally, to mix the synth with drums we need to use `with` function:
 That's it! This approach needs a little bit to understand, but it's really powerful in terms of representing simple songs. Also, it plays really well with live coding, which I plan to show in one of the next tutorials.
 
 **EDIT:**
-I'm aware that my version differ from the original sound. Just uploaded slightly updated final version and working on fixing the content of the post. Thanks for all that pointed my mistakes! As one said - we're only *human after all* ;)
+I'm aware that my version differ from the original sound. Just uploaded updated code and samples and made corrections to the text. Thanks for all that pointed my mistakes! As one said - we're only *human after all* ;)
