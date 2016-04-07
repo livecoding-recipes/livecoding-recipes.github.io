@@ -28,7 +28,7 @@ So from the midi file from Daft Club we can get these notes:
 
 ![notes](/assets/images/da-funk.png)
 
-The key is ~~F major~~ G major and BPM is 110.
+The key is ~~F major~~ G minor and BPM is 110.
 
 To recreate the melody I'll use [Leipzig](https://github.com/ctford/leipzig) - superb library which provides a DSL for constructing melody as data structure.
 
@@ -220,4 +220,4 @@ And finally, to mix the synth with drums we need to use `with` function:
 That's it! This approach needs a little bit to understand, but it's really powerful in terms of representing simple songs. Also, it plays really well with live coding, which I plan to show in one of the next tutorials.
 
 **EDIT:**
-I'm aware that my version differs from the original song. I'm doing this blog mainly for fun and does not state that this approach could lead to a professional sounding tune. 
+I'm aware that my version differs from the original song. I'm doing this blog mainly for fun and does not state that this approach could lead to a professional sounding tune.
