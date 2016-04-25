@@ -94,7 +94,7 @@ Scaled to 100 BPM with melody:
 I can also play only first few beats of some sample by using it like this `[0 :lean-chorus 2]`, which means that on time `0` I only want first 2 beats of `:lean-chorus` sample. The beat lengths are of course computed from current BPM.
 
 ### Song state
-I found it really easy to manipulate to have my current state of the song like a map of tracks:
+I found it really easy to manipulate current state of the song represented as a map of independent tracks:
 
 {% highlight clojure %}
 {:beat   [{:time 0 :drum :kick :amp 1} ...]
