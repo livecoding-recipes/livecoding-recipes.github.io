@@ -73,7 +73,7 @@ So it sounds like this:
 </audio>
 
 ### Sampler
-What I'm doing a lot in this video is using a homemade sampler. I stole some ideas from Sam Aaron's Sonic Pi [sample packs](https://github.com/samaaron/sonic-pi/blob/019cfa1d19fbd122bb1beeb3faa4642f76809d20/etc/doc/tutorial/en/03.7-Sample-Packs.md#sample-packs) concept ;)
+What I'm doing a lot in this video is using a homemade sampler. I stolen some ideas from Sam Aaron's Sonic Pi [sample packs](https://github.com/samaaron/sonic-pi/blob/019cfa1d19fbd122bb1beeb3faa4642f76809d20/etc/doc/tutorial/en/03.7-Sample-Packs.md#sample-packs) concept ;)
 
 Basically, I have a directory when I put all the samples and use special meaning of samples file name to detect some properties of the sample.
 So for example, I have `120_8_smack_beat.wav` which tells my sampler that this file is in 120 BPM, is 8 beats long and is named `:smack-beat`.
