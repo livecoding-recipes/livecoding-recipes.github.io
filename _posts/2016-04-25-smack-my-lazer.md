@@ -11,7 +11,7 @@ In this post I'll introduce my live coding music environment built on top on [Ov
 
 This is an example session we'll be discussing here:
 
-<iframe src="http://www.youtube.com/embed/JUq-YnuFt8w?color=white&theme=light"></iframe>
+<iframe src="https://www.youtube.com/embed/JUq-YnuFt8w?color=white&theme=light"></iframe>
 
 I'm using lots of samples from Major Lazer & DJ Snake - Lean On (feat. MØ) and a beat from Prodigy - Smack My B**ch Up.
 
