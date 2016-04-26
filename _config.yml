@@ -12,5 +12,5 @@ google_analytics: 'UA-76046732-1'
 gems: [jekyll-paginate]
 
 # Details for the RSS feed generator
-url:            'http://pjagielski.pl'
+url:            'http://overtone-recipes.github.io'
 author:         'Piotr Jagielski'
