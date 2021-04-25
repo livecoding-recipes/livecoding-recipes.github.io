@@ -8,7 +8,7 @@ categories: live-coding remake
 In this post I'll show how to recreate a classic hip-hop tune by Dr Dre using my library [punkt](https://github.com/pjagielski/punkt) and some Kotlin goodness for sequence processing. I was heavily using [this awesome post](https://coenmodder.com/still-dre-how-a-simple-pattern-turned-two-chords-into-a-classic/) to find correct chords and rhythm.
 
 Here is short session with final result:
-<iframe src="https://www.youtube.com/watch?v=Ch8e4vrcndw&ab_channel=PiotrJagielski"></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ch8e4vrcndw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Chords
 
