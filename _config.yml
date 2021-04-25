@@ -1,6 +1,6 @@
-name: Overtone Recipes
-description: Programming music with Clojure
-meta_description: "Overtone Recipes, programming music with Clojure"
+name: Live-coding Recipes
+description: Programming music with Kotlin and Clojure
+meta_description: "Live-coding Recipes, programming music with Kotlin and Clojure"
 
 markdown: kramdown
 highlighter: rouge
@@ -9,7 +9,7 @@ paginate: 15
 baseurl: /
 domain_name: 'http://overtone-recipes.github.io'
 google_analytics: 'UA-76046732-1'
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 
 # Details for the RSS feed generator
 url:            'http://overtone-recipes.github.io'
