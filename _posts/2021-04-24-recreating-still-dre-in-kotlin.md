@@ -22,7 +22,6 @@ val (Am, Emsus4, Em) = listOf(
     Chord.V.sus4().inversion(2).low(), // -> Emsus4
     Chord.V.inversion(2).low() // -> Em
 )
-)
 {% endhighlight %}
 
 When we have a `scale` and a chord progression we can create a piece of music by calling `phrase` function. It is an extension function on the `scale`, takes a list of `chords` and list of durations:
