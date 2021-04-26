@@ -7,10 +7,10 @@ highlighter: rouge
 logo: false
 paginate: 15
 baseurl: /
-domain_name: 'http://overtone-recipes.github.io'
+domain_name: 'http://livecoding-recipes.github.io'
 google_analytics: 'UA-76046732-1'
 plugins: [jekyll-paginate]
 
 # Details for the RSS feed generator
-url:            'http://overtone-recipes.github.io'
+url:            'http://livecoding-recipes.github.io'
 author:         'Piotr Jagielski'
