@@ -240,10 +240,10 @@ class MidiPlayer(private val receiver: Receiver, notes: List<Note>, metronome: M
 Summing it up, the code to play first 16 beats of `Giorgio by Moroder` looks like this:
 
 {% highlight kotlin %}
-class SimpleMidiSequencer
+class MidiSequencer
 
 fun main() {
-    val midiStream = SimpleMidiSequencer::class.java.getResourceAsStream("/GiorgiobyMoroder.mid")
+    val midiStream = MidiSequencer::class.java.getResourceAsStream("/GiorgiobyMoroder.mid")
     val sequencer = MidiSystem.getSequencer().apply { setSequence(midiStream) }
     val synthesiser = MidiSystem.getSynthesizer().apply { open() }
 
@@ -286,7 +286,7 @@ Then we just need to start the looper by playing the first bar:
 {% highlight kotlin %}
     ...
     runBlocking {
-        val metronome = Metronome(bpm = 110)
+        val metronome = Metronome(bpm = 90)
         val player = MidiPlayer(synthesiser.receiver, melody, metronome, this)
         player.playBar(1, LocalDateTime.now())
     ...
