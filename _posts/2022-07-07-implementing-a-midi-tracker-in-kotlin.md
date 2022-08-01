@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Implementing a sound tracker in Kotlin from scratch. Part 1 - MIDI player"
-date:   2022-07-07
+title:  "Implementing a MIDI player in Kotlin from scratch"
+date:   2022-08-01
 categories: midi kotlin tracker
 ---
 
