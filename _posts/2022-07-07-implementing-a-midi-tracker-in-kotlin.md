@@ -313,7 +313,7 @@ Finally, using a MIDI as interface gives us an opportunity to connect to various
 ℹ️ _For linux users: you should install Virtual MIDI kernel driver to trigger software synth events, see [this link](
 https://github.com/anton-k/linux-audio-howto/blob/master/doc/os-setup/virtual-midi.md#virtual-midi-1) for detailed instructions_
 
-To connect to given MIDI device, we have to filter out the `MidiSystem.getMidiDeviceInfo` list, in this example I'm looking for `VirMIDI`, which was created by Linux kernel driver:
+To connect to given MIDI device, we have to filter out the `MidiSystem.getMidiDeviceInfo` list by description. And don't forget to `open` the device.
 
 {% highlight kotlin %}
 private fun midiDevice(desc: String) =
@@ -323,7 +323,7 @@ private fun midiDevice(desc: String) =
         .apply { open() }
 
 {% endhighlight %}
-Then we just need to pass this `receiver` to `Player` instead of `synstesiser.receiver`:
+Then we just need to pass this `receiver` to `Player` instead of `synstesiser.receiver`. In this example I'm looking for `VirMIDI`, which was created by Linux kernel driver:
 
 {% highlight kotlin %}
 fun main() {
