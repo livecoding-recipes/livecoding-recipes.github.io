@@ -11,7 +11,7 @@ In this series I’ll try to show you how to implement a tracker-like environmen
 3. Discover interactivity possibilities with Kotlin Scripting.
 
 ### Built-in Java MIDI support
-Recently I discovered that the standard JVM library contains a feature-rich implementation of the MIDI protocol. We can grab any MIDI file from the web, and play it using the JVM with the following piece of code:
+Recently I discovered that the standard JVM library contains a feature-rich implementation of the MIDI protocol. We can grab [a MIDI file from the web](https://freemidi.org/download3-14493-giorgio-by-moroder-daft-punk), and play it using the JVM with the following piece of code:
  
 {% highlight kotlin %}
 import javax.sound.midi.MidiSystem
@@ -32,7 +32,7 @@ You should hear something like this:
   <source src="/assets/sounds/giorgio/giorgio_jvm.mp3" type="audio/mpeg"/>
 </audio>
 
-The goal of this part is to recreate this with pure Kotlin code using coroutines.
+You can find this code [here](https://github.com/pjagielski/kotlin-tracker/blob/master/src/main/kotlin/pl/pjagielski/tracker/JvmMidiSequencer.kt). The goal of this post is to reimplement this player with pure Kotlin code using coroutines.
 
 ### Reverse engineering the MIDI events
 First of all, let's try to reverse engineer the contents of a MIDI file. Starting with `sequencer.sequence` we can easily discover that:
@@ -201,7 +201,7 @@ abstract class Player(
 Then, to play all the notes, we just need to `schedule` until their `beat` translated to millis from some starting time:
 
 {% highlight kotlin %}
-    ... 
+abstract class Player( ... ) {
     private var playing = true
 
     abstract fun playNote(note: Note, playAt: LocalDateTime)
@@ -217,6 +217,7 @@ Then, to play all the notes, we just need to `schedule` until their `beat` trans
         }
     }
     ...
+}
 {% endhighlight %}
 To play MIDI notes, we need to pass `javax.sound.midi.Receiver` instance, which allows us to send `MidiMessage`s. We send `NOTE ON` immidiately, and schedule `NOTE OFF` to play after note's `duration`:
 
@@ -270,6 +271,8 @@ data class Metronome(val bpm: Int, val beatsPerBar: Int = 16) {
 
 And then let's add `playBar` function to our generic `Player`:
 {% highlight kotlin %}
+abstract class Player( ... ) {
+    ...
     fun playBar(bar: Int, at: LocalDateTime) {
         if (!playing) return
         println("Playing bar $bar")
@@ -279,17 +282,21 @@ And then let's add `playBar` function to our generic `Player`:
             playBar(bar + 1, nextBarAt)
         }
     }
+    ...
+}
 {% endhighlight %}
 
 Then we just need to start the looper by playing the first bar:
 
 {% highlight kotlin %}
+fun main() {
     ...
     runBlocking {
         val metronome = Metronome(bpm = 90)
         val player = MidiPlayer(synthesiser.receiver, melody, metronome, this)
         player.playBar(1, LocalDateTime.now())
     ...
+}
 {% endhighlight %}
 
 Now we're ready to play the final result, with additional feature of adjusting the tempo. Here is an example with 90 BPM:
@@ -297,6 +304,8 @@ Now we're ready to play the final result, with additional feature of adjusting t
   <source src="/assets/sounds/giorgio/giorgio_player_90bpm.ogg" type="audio/ogg"/>
   <source src="/assets/sounds/giorgio/giorgio_player_90bpm.mp3" type="audio/mpeg"/>
 </audio>
+
+The complete code for `MidiSequencer` is [here](https://github.com/pjagielski/kotlin-tracker/blob/master/src/main/kotlin/pl/pjagielski/tracker/MidiSequencer.kt).
 
 ### Connecting to a real synthesiser
 Finally, using a MIDI as interface gives us an opportunity to connect to various software and hardware devices. If you don't have a hardware synth you can use for example open-source [Surge XT](https://surge-synthesizer.github.io/) which sounds pretty well.
@@ -307,26 +316,30 @@ https://github.com/anton-k/linux-audio-howto/blob/master/doc/os-setup/virtual-mi
 To connect to given MIDI device, we have to filter out the `MidiSystem.getMidiDeviceInfo` list, in this example I'm looking for `VirMIDI`, which was created by Linux kernel driver:
 
 {% highlight kotlin %}
-    val midiDeviceInfos = MidiSystem.getMidiDeviceInfo()
-
-    val device = midiDeviceInfos.toList()
+private fun midiDevice(desc: String) =
+    MidiSystem.getMidiDeviceInfo().toList()
         .map { MidiSystem.getMidiDevice(it) }
-        .first { it.deviceInfo.description.startsWith("VirMIDI") }
-
-    device.open()
-
-    val receiver = device.receiver
+        .first { it.deviceInfo.description.startsWith(desc) }
+        .apply { open() }
 
 {% endhighlight %}
 Then we just need to pass this `receiver` to `Player` instead of `synstesiser.receiver`:
 
 {% highlight kotlin %}
+fun main() {
     ...
-    val player = MidiPlayer(receiver, melody, metronome, this)
-    ...
+    runBlocking {
+        ...
+        val device = midiDevice("VirMIDI")
+        val receiver = device.receiver
+        val player = MidiPlayer(receiver, melody, metronome, this)
+        ...
+        device.close()
+    }
+}
 {% endhighlight %}
 
 Here is a sample session with **SurgeXT**:
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6ov4TkH0_cQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
- It's Kotlin playing a real synth, enjoy! 😍
+ It's Kotlin sequencer playing a real synth, enjoy! 😍
