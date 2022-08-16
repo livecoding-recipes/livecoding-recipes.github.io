@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="twitter:card" content="summary_large_image" />
 
     {% if page.title %}
     <title>{{ site.name }} - {{ page.title }}</title>
@@ -15,11 +16,11 @@
     {% endif %}
 
     {% if page.image %}
-    <meta content="{{ site.baseurl }}/assets/images/{{ page.image }}" property="og:image">
-    <meta name="twitter:image" content="{{ site.baseurl }}/assets/images/{{ page.image }}" />
+    <meta content="{{ site.url }}/assets/images/{{ page.image }}" property="og:image">
+    <meta name="twitter:image" content="{{ site.url }}/assets/images/{{ page.image }}" />
     {% else %}
-    <meta content="{{ site.baseurl }}/assets/images/profile.png" property="og:image">
-    <meta name="twitter:image" content="{{ site.baseurl }}/assets/images/profile.png" />
+    <meta content="{{ site.url }}/assets/images/profile.png" property="og:image">
+    <meta name="twitter:image" content="{{ site.url }}/assets/images/profile.png" />
     {% endif %}
 
     {% if page.description %}
@@ -45,7 +46,7 @@
     {{ content }}
     <footer class="site-footer clearfix">
       <section class="copyright">
-        <a href="{{ site.baseurl }}">{{ site.name }}</a> &copy;
+        <a href="{{ site.url }}">{{ site.name }}</a> &copy;
               {{date | date: "%Y"}} &bull; All rights reserved.
       </section>
       <section class="poweredby">Made with Jekyll using
