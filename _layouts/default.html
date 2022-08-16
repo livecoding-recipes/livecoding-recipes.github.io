@@ -6,21 +6,28 @@
 
     {% if page.title %}
     <title>{{ site.name }} - {{ page.title }}</title>
-    <meta content="{{ site.name }} - {{ page.title }}" property="og:title">
+    <meta content="{{ page.title }}" property="og:title">
+    <meta name="twitter:title" value="{{ page.title }}" />
     {% else %}
     <title>{{ site.name }} - {{ site.description }}</title>
-    <meta content="{{ site.name }} - {{ site.description }}" property="og:title">
+    <meta content="{{ site.description }}" property="og:title">
+    <meta name="twitter:title" value="{{ site.name }}" />
     {% endif %}
+
     {% if page.image %}
-    <meta content="/assets/images/{{ page.image }}" property="og:image">
+    <meta content="{{ site.baseurl }}/assets/images/{{ page.image }}" property="og:image">
+    <meta name="twitter:image" content="{{ site.baseurl }}/assets/images/{{ page.image }}" />
     {% else %}
-    <meta content="/assets/images/profile.png" property="og:image">
+    <meta content="{{ site.baseurl }}/assets/images/profile.png" property="og:image">
+    <meta name="twitter:image" content="{{ site.baseurl }}/assets/images/profile.png" />
     {% endif %}
 
     {% if page.description %}
-    <meta name="description" content="{{ page.description}}" property="og:description"/>
+    <meta name="description" content="{{ page.description }}" property="og:description"/>
+    <meta name="twitter:description" value="{{ page.description }}" />
     {% else %}
-    <meta name="description" content="{{ site.meta_description}}" property="og:description"/>
+    <meta name="description" content="{{ site.meta_description }}" property="og:description"/>
+    <meta name="twitter:description" value="{{ site.meta_description }}" />
     {% endif %}
 
     <meta name="HandheldFriendly" content="True" />
