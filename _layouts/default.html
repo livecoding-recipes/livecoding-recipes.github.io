@@ -5,11 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     {% if page.title %}
-    <title>{{site.name}} - {{ page.title }}</title>
+    <title>{{ site.name }} - {{ page.title }}</title>
+    <meta content="{{ site.name }} - {{ page.title }}" property="og:title">
     {% else %}
     <title>{{ site.name }} - {{ site.description }}</title>
+    <meta content="{{ site.name }} - {{ site.description }}" property="og:title">
     {% endif %}
-    <meta name="description" content="{{ site.meta_description}}" />
+    {% if page.image %}
+    <meta content="/assets/images/{{ page.image }}" property="og:image">
+    {% else %}
+    <meta content="/assets/images/profile.png" property="og:image">
+    {% endif %}
+
+    {% if page.description %}
+    <meta name="description" content="{{ page.description}}" property="og:description"/>
+    {% else %}
+    <meta name="description" content="{{ site.meta_description}}" property="og:description"/>
+    {% endif %}
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />

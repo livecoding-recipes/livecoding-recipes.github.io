@@ -3,10 +3,12 @@ layout: post
 title:  "Implementing a MIDI player in Kotlin from scratch"
 date:   2022-08-01
 categories: midi kotlin tracker
+image: tracker1.jpg
+description: In this post we're getting familiar with MIDI protocol and its abstractions in the JVM standard library to implement a simple MIDI player using coroutines
 ---
 
 In this series I’ll try to show you how to implement a tracker-like environment in pure Kotlin. The goal is to divide this into 3 parts:
-1. Getting familiar with MIDI protocol and its abstractions in the JVM library to implement a simple MIDI player using coroutines (this post)
+1. Getting familiar with MIDI protocol and its abstractions in the JVM standard library to implement a simple MIDI player using coroutines (this post)
 2. Introduce Open Sound Control (OSC), it's advantages over MIDI and use SuperCollider for precise timing, synth design and sample playback
 3. Discover interactivity possibilities with Kotlin Scripting.
 
