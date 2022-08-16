@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@pjagielski" />
 
     {% if page.title %}
     <title>{{ site.name }} - {{ page.title }}</title>
@@ -16,9 +16,11 @@
     {% endif %}
 
     {% if page.image %}
+    <meta name="twitter:card" content="summary_large_image" />
     <meta content="{{ site.url }}/assets/images/{{ page.image }}" property="og:image">
     <meta name="twitter:image" content="{{ site.url }}/assets/images/{{ page.image }}" />
     {% else %}
+    <meta name="twitter:card" content="summary" />
     <meta content="{{ site.url }}/assets/images/profile.png" property="og:image">
     <meta name="twitter:image" content="{{ site.url }}/assets/images/profile.png" />
     {% endif %}
