@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="twitter:site" content="@pjagielski" />
     <meta property="og:site_name" content="{{ site.name }}"/>
+    <meta content="{{ page.url | absolute_url }}" property="og:url">
 
     {% if page.title %}
     <title>{{ site.name }} - {{ page.title }}</title>
